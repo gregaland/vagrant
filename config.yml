@@ -1,0 +1,38 @@
+#sync_folders:
+#   - host: /Users/gland/data
+#     guest: /data
+#     owner: root
+#     group: root
+#     mount_options: ["dmode=775,fmode=664"]
+
+nodes:
+  centos-master:
+    box: centos/7
+    name: k8s-master
+    memory: 4096
+    cpus: 2
+    ip: 192.168.121.10
+    ports: 
+      - host: 30000
+        guest: 30000
+
+  centos-minion-1:
+    box: centos/7
+    name: k8s-minion1
+    memory: 4096
+    cpus: 2
+    ip: 192.168.121.20
+
+  centos-minion-2:
+    box: centos/7
+    name: k8s-minion2
+    memory: 4096
+    cpus: 2
+    ip: 192.168.121.21
+
+  centos-minion-3:
+    box: centos/7
+    name: k8s-minion3
+    memory: 4096
+    cpus: 2
+    ip: 192.168.121.22

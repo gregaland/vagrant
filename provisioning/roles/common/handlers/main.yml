@@ -1,0 +1,7 @@
+---
+- name: ntpd_restart
+  systemd:
+    name: ntpd
+    no_block: yes
+    state: restarted
+  ignore_errors: yes

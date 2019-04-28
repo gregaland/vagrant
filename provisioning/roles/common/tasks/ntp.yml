@@ -1,0 +1,22 @@
+- name: install ntp and ntpdate
+  become: true
+  package: 
+    name: ntp
+    state: present
+
+- name: ntp.conf template
+  become: true
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify: ntpd_restart
+
+- name: step-tickers template
+  become: true
+  template: src=step-tickers.j2 dest=/etc/ntp/step-tickers
+  notify: ntpd_restart
+
+- name: ntp service enabled
+  become: true
+  service: 
+    name: ntpd
+    state: started
+    enabled: yes

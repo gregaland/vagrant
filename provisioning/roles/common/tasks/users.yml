@@ -1,0 +1,38 @@
+---
+
+- name: ansible
+  become: true
+  user:
+    name: ansible
+    password: $6$jAfL1Ry9$CUcabXwwAitmG9Lxb60mQtT0cZmP8ZBewkB.jP.BFqdK2c8wfG69gBESJ8Eios0WvUR2fDlnWGbsrX.BO5gB61 
+
+- name: ansible public key
+  become: true
+  authorized_key:
+    user: ansible
+    state: present
+    key: "{{ lookup('file', '/Users/gland/.ssh/id_rsa.pub') }}"
+
+- name: gland
+  become: true
+  user:
+    name: gland
+    password: $6$jAfL1Ry9$CUcabXwwAitmG9Lxb60mQtT0cZmP8ZBewkB.jP.BFqdK2c8wfG69gBESJ8Eios0WvUR2fDlnWGbsrX.BO5gB61 
+
+- name: gland public key
+  become: true
+  authorized_key:
+    user: gland
+    state: present
+    key: "{{ lookup('file', '/Users/gland/.ssh/id_rsa.pub') }}"
+
+- name: sudoers
+  become: true
+  copy: 
+    src: "{{ item }}"
+    dest: /etc/sudoers.d/
+    owner: root
+    group: root
+    mode: 0440
+  with_fileglob:
+    - sudoers/*

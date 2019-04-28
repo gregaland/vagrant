@@ -1,0 +1,12 @@
+##
+## {{ ansible_managed }}
+##
+
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+restrict 127.0.0.1
+restrict -6 ::1
+{% for ntp in ntp_servers %}
+server {{ ntp }}
+{% endfor %}
+driftfile /var/lib/ntp/drift

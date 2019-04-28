@@ -1,0 +1,8 @@
+---
+
+- name: Add users
+  hosts: all
+
+  tasks:
+    - import_role:
+        name: common

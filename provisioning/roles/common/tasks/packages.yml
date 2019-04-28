@@ -1,0 +1,11 @@
+---
+
+- name: common packages
+  become: true
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - net-tools
+      - mlocate
+      - curl
